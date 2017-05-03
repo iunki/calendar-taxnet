@@ -92,10 +92,26 @@ body{
     width: 100%;
     max-width: 700px;
     margin: 0 auto;
-    border-spacing: 0 1.5em;
+    /*border-spacing: 0 1.5em;*/
+    border-collapse: separate;
+    border-spacing: 3px;
 }
 #calendarBig td {
     vertical-align: top;
+}
+#calendarBig .month-table{
+    margin-bottom: 20px;
+    border: 2px solid transparent;
+    padding: 28px;
+}
+#calendarBig .month-table:hover{
+    border: 2px solid #f1f2f3;
+    margin: -2px;
+}
+#calendarBig td.month{
+    text-transform: uppercase;
+    padding-bottom: 13px;
+    font-size: 18px;
 }
 #calendarBig > thead td:not(:nth-child(2)) { /* предыдущий-следующий года */
     text-decoration: underline;
@@ -131,7 +147,7 @@ body{
 #calendarBig table tbody td { /* дни */
     color: #5a5a5a;
     font-size: 12px;
-    padding: 3px 7px;
+    padding: 1px 6px 2px 6px;
 }
 #calendarBig .holiday { /* выходные и праздники */
     color: rgb(231, 140, 92);

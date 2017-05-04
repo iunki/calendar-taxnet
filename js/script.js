@@ -76,15 +76,33 @@ function calendarBig(year) {
     }
 
     $("#calendarBig td.month-table").on("click", function () {
-        var $table = $(".info .info-table");
-        $(".info h1").text();
-        $(this).find("#calendarBig td[title]").each(function () {
-            $table.append(
-                "<tr>" +
-                "</tr>"
-            )
-        });
+        var $table = $(this).find("table");
+        $(".info h1").text("Отчетность в " + months[parseInt($table.attr("data-m"))]);
+        $(".info-table").html(" ");
+
+        for (var i = 0; i < yearData["year" + year]["MonthReportings"].length; i++) {
+            if (parseInt(yearData["year" + year]["MonthReportings"][i]["Month"]) - 1 == parseInt($table.attr("data-m"))) {
+                for (var k = 0; k < yearData["year" + year]["MonthReportings"][i]["Reportings"].length; k++) {
+
+                    var obj = yearData["year" + year]["MonthReportings"][i]["Reportings"][k];
+
+                    $(".info-table").append(
+                        '<tr>' +
+                        '<td class="info-date">' + obj.Period + '</td>' +
+                        '<td>' +
+                        '<ul class="info-list">' +
+                        '<li>' + obj.Description + '</li>' +
+                        '</ul>' +
+                        '</td>' +
+                        '</tr>'
+                    )
+
+                }
+            }
+        }
+
     });
+
     $("#calendarBig td[title]").on("click", function () {
         var $tdRootObj = $(this);
         $(".selected-day").removeClass("selected-day");
@@ -2733,7 +2751,8 @@ yearData = {
             }]
     }
 };
-var months = ["январе", "феврале", "марте", "апреле", "мае", "июне", "июле", "августе", "сентябре", "октябре", "ноябре", "декабре"];
+months = ["январе", "феврале", "марте", "апреле", "мае", "июне", "июле", "августе", "сентябре", "октябре", "ноябре", "декабре"];
+
 calendarBig(new Date().getFullYear());
 
 function calendarBigChange() {

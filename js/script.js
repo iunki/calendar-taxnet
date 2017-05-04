@@ -177,6 +177,7 @@ $("#byx").on("change", function () {
 });
 
 
+
 yearData = {
     "year2017": {
         "ReportingPeriods": [

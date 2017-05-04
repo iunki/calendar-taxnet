@@ -117,6 +117,9 @@ body{
     padding-bottom: 30px;
     padding-left: 20px;
 }
+.info .info-table tr:last-child ul{
+    padding-bottom: 0;
+}
 
 /*calendar*/
 #calendarBig { /* весь календарь */
@@ -174,8 +177,10 @@ body{
 #calendarBig table tbody td { /* дни */
     color: #5a5a5a;
     font-size: 12px;
-    padding: 4px 4px 2px 4px;
+    padding: 4px 0px 2px 0px;
     line-height: 1em;
+    width: 25px !important;
+    min-width: 25px;
 }
 
 #calendarBig table tbody td[title] { /* выделенные даты */

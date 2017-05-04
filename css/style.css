@@ -133,6 +133,10 @@ body{
     border: 2px solid transparent;
     padding: 28px 20px;
 }
+#calendarBig .month-table table{
+    border-collapse:separate;
+    border-spacing: 0 3px;
+}
 #calendarBig .month-table.active{
     border: 2px solid #008ed0;
     margin: -2px;
@@ -181,7 +185,7 @@ body{
     color: #5a5a5a;
     font-size: 12px;
     padding: 4px 6px 2px 6px;
-    border-bottom: 3px solid #fff;
+    /*border-bottom: 3px solid #fff;*/
     line-height: 1em;
 }
 #calendarBig .holiday { /* выходные и праздники */
@@ -211,7 +215,6 @@ body{
     background: #f1f2f3;
 }
 #calendarBig table td[title].selected-day{
-    /*border-bottom: 3px solid #fff;*/
-    /*border-right: 5px solid #696a6a;*/
-    /*border-left: 5px solid #484949;*/
+    border-right: 5px solid #f1f2f3;
+    border-left: 5px solid #f1f2f3;
 }

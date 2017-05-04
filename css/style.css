@@ -102,7 +102,7 @@ body{
 #calendarBig .month-table{
     margin-bottom: 20px;
     border: 2px solid transparent;
-    padding: 28px;
+    padding: 28px 20px;
 }
 #calendarBig .month-table:hover{
     border: 2px solid #f1f2f3;

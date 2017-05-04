@@ -1,5 +1,9 @@
 function calendarBig(year) {
     $('#calendarBig td[title]').removeAttr('title');
+
+    var sotrState = $('#sotr').prop("checked");
+    var byxState = $('#byx').prop("checked");
+
     for (var m = 0; m <= 11; m++) {
         var D = new Date(year, [m], 1),
             Dlast = new Date(D.getFullYear(), D.getMonth() + 1, 0).getDate(),
@@ -57,31 +61,73 @@ function calendarBig(year) {
                 if (
                     parseInt(myD[i].innerHTML) == parseInt(my["end"].split(".")[0]) &&
                     parseInt(myD[i].parentNode.parentNode.parentNode.dataset.m) == (parseInt(my["end"].split(".")[1]) - 1)) {
-                    myD[i].title = my["text"];
-                    $(myD[i]).attr("start", my["start"]);
-                    $(myD[i]).attr("end", my["end"]);
+                    if (
+                        (my["type"] == 1 && sotrState) ||
+                        (my["type"] == 2 && byxState) ||
+                        (sotrState == false && byxState == false)
+                    ) {
+                        myD[i].title = my["text"];
+                        $(myD[i]).attr("start", my["start"]);
+                        $(myD[i]).attr("end", my["end"]);
+                    }
                 }
             }
         }
     }
+
+    $("#calendarBig td.month-table").on("click", function () {
+        var $table = $(".info .info-table");
+        $(".info h1").text();
+        $(this).find("#calendarBig td[title]").each(function () {
+            $table.append(
+                "<tr>" +
+                "</tr>"
+            )
+        });
+    });
     $("#calendarBig td[title]").on("click", function () {
         var $tdRootObj = $(this);
         $(".selected-day").removeClass("selected-day");
         $("#calendarBig td.month-table").each(function () {
+
+            var $table = $(this).find("table");
+
+            var dateStartMonth = parseInt($tdRootObj.attr("start").split(".")[1]) - 1;
+            var dateEndMonth = parseInt($tdRootObj.attr("end").split(".")[1]) - 1;
+            var dateStartDay = parseInt($tdRootObj.attr("start").split(".")[0]) - 1;
+            var dateEndDay = parseInt($tdRootObj.attr("end").split(".")[0]) - 1;
+
+            if (parseInt($table.attr("data-m")) == parseInt(dateEndMonth)) {
+                $("#calendarBig .month-table.active").removeClass("active");
+                $table.parent().addClass("active");
+            }
             if (
-                parseInt($(this).find("table").attr("data-m")) >= parseInt($tdRootObj.attr("start").split(".")[1] - 1) &&
-                parseInt($(this).find("table").attr("data-m")) <= parseInt($tdRootObj.attr("end").split(".")[1] - 1)
+                parseInt($table.attr("data-m")) >= parseInt(dateStartMonth) &&
+                parseInt($table.attr("data-m")) <= parseInt(dateEndMonth)
             ) {
+
                 var iterator = 0;
+
                 $(this).find("td").each(function () {
 
                     if (
                         $(this).text().length > 0 && !$(this).attr("colspan") &&
-                        (iterator + 1) >= parseInt($tdRootObj.attr("start").split(".")[0]) &&
-                        (iterator + 1) <= parseInt($tdRootObj.attr("end").split(".")[0])
+                        (
+                            (
+                                parseInt($table.attr("data-m")) == dateEndMonth &&
+                                (iterator) >= dateStartDay &&
+                                (iterator) <= dateEndDay
+                            ) ||
+                            (
+                                parseInt($table.attr("data-m")) >= dateStartMonth &&
+                                parseInt($table.attr("data-m")) < dateEndMonth
+                            )
+                        )
                     ) {
-                        iterator++;
                         $(this).addClass("selected-day");
+                    }
+                    if ($(this).text().length > 0 && !$(this).attr("colspan")) {
+                        iterator++;
                     }
                 })
             }
@@ -2687,7 +2733,7 @@ yearData = {
             }]
     }
 };
-
+var months = ["январе", "феврале", "марте", "апреле", "мае", "июне", "июле", "августе", "сентябре", "октябре", "ноябре", "декабре"];
 calendarBig(new Date().getFullYear());
 
 function calendarBigChange() {

@@ -1,7 +1,7 @@
 function calendarBig(year) {
     $('#calendarBig td[title]').removeAttr('title');
-
-
+    $("#calendarBig .month-table.active").removeClass("active");
+    $(".info").hide();
     for (var m = 0; m <= 11; m++) {
         var D = new Date(year, [m], 1),
             Dlast = new Date(D.getFullYear(), D.getMonth() + 1, 0).getDate(),
@@ -154,41 +154,28 @@ function calendarBig(year) {
     });
 }
 
-$("#byx").on("change", function () {
-    if ($(this).prop("checked") && !$("#sotr").prop("checked")) {
-        $("#calendarBig").find("td[type]").each(function () {
-            if (parseInt($(this).attr("type")) != 1) {
-                $(this).removeClass("active-point")
-            } else {
-                $(this).addClass("active-point")
-            }
-        })
-    } else if ($(this).prop("checked") && $("#sotr").prop("checked")) {
-        $("#calendarBig").find("td[title]").addClass("active-point");
-    } else {
-        if (!$("#sotr").prop("checked") && !$(this).prop("checked")) {
-            $("#calendarBig").find("td[title]").addClass("active-point");
+chengeTypeActivePoint = function () {
+    var checkboxByx = $("#byx").prop("checked");
+    var checkboxSotr = $("#sotr").prop("checked");
+
+    $("#calendarBig").find("td[type]").each(function () {
+        if (
+            (parseInt($(this).attr("type")) == 1 && !checkboxByx) ||
+            (parseInt($(this).attr("type")) == 2 && !checkboxSotr)
+        ) {
+            $(this).removeClass("active-point")
+        } else {
+            $(this).addClass("active-point")
         }
-    }
+    })
+};
+$("#sotr").on("change", function () {
+    chengeTypeActivePoint();
+});
+$("#byx").on("change", function () {
+    chengeTypeActivePoint();
 });
 
-$("#sotr").on("change", function () {
-    if ($(this).prop("checked") && !$("#byx").prop("checked")) {
-        $("#calendarBig").find("td[type]").each(function () {
-            if (parseInt($(this).attr("type")) != 2) {
-                $(this).removeClass("active-point")
-            } else {
-                $(this).addClass("active-point")
-            }
-        })
-    } else if ($(this).prop("checked") && $("#byx").prop("checked")) {
-        $("#calendarBig").find("td[title]").addClass("active-point");
-    } else {
-        if (!$("#byx").prop("checked") && !$(this).prop("checked")) {
-            $("#calendarBig").find("td[title]").addClass("active-point");
-        }
-    }
-});
 
 yearData = {
     "year2017": {

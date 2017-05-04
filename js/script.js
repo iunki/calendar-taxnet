@@ -76,6 +76,10 @@ function calendarBig(year) {
     }
 
     $("#calendarBig td.month-table").on("click", function () {
+
+        $("#calendarBig .month-table.active").removeClass("active");
+        $(this).addClass("active");
+
         var $table = $(this).find("table");
         $(".info h1").text("Отчетность в " + months[parseInt($table.attr("data-m"))]);
         $(".info-table").html(" ");

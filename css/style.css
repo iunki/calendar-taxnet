@@ -121,6 +121,15 @@ body{
 .info .info-table tr:last-child ul{
     padding-bottom: 0;
 }
+.info ul li{
+    position: relative;
+}
+
+.info ul li:before{
+    content:"•";
+    position: absolute;
+    left: -7px;
+}
 
 /*calendar*/
 #calendarBig { /* весь календарь */
@@ -182,6 +191,7 @@ body{
     line-height: 1em;
     width: 25px !important;
     min-width: 25px;
+    transition: background 0.3s;
 }
 
 #calendarBig table tbody td[title].active-point { /* выделенные даты */
@@ -197,16 +207,12 @@ body{
     text-decoration: none;
 }
 
-#calendarBig table tbody td[title].active-point a:hover { /* выделенные даты-ссылки под курсором */
-    background: #fde910;
-    color: red;
-}
 #calendarBig table .selected-day{
     background: #f1f2f3;
 }
 #calendarBig table td[title].selected-day{
-    border-right: 4px solid #f1f2f3;
-    border-left: 4px solid #f1f2f3;
+    border-right: 4px solid #f1f2f3 !important;
+    border-left: 4px solid #f1f2f3 !important;
     padding-right: 1px;
     padding-left: 1px;
 }

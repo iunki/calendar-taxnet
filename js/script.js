@@ -53,16 +53,40 @@ function calendarBig(year) {
             var myD = document.querySelectorAll('#calendarBig table td');
             var my = yearData["year" + year]["ReportingPeriods"][k];
             for (var i = 0; i < myD.length; i++) {
-                if (!!my["end"] &&
+
+                if (
                     parseInt(myD[i].innerHTML) == parseInt(my["end"].split(".")[0]) &&
                     parseInt(myD[i].parentNode.parentNode.parentNode.dataset.m) == (parseInt(my["end"].split(".")[1]) - 1)) {
-                    myD[i].title = my["end"]["text"];
-
+                    myD[i].title = my["text"];
+                    $(myD[i]).attr("start", my["start"]);
+                    $(myD[i]).attr("end", my["end"]);
                 }
             }
         }
     }
+    $("#calendarBig td[title]").on("click", function () {
+        var $tdRootObj = $(this);
+        $(".selected-day").removeClass("selected-day");
+        $("#calendarBig td.month-table").each(function () {
+            if (
+                parseInt($(this).find("table").attr("data-m")) >= parseInt($tdRootObj.attr("start").split(".")[1] - 1) &&
+                parseInt($(this).find("table").attr("data-m")) <= parseInt($tdRootObj.attr("end").split(".")[1] - 1)
+            ) {
+                var iterator = 0;
+                $(this).find("td").each(function () {
 
+                    if (
+                        $(this).text().length > 0 && !$(this).attr("colspan") &&
+                        (iterator + 1) >= parseInt($tdRootObj.attr("start").split(".")[0]) &&
+                        (iterator + 1) <= parseInt($tdRootObj.attr("end").split(".")[0])
+                    ) {
+                        iterator++;
+                        $(this).addClass("selected-day");
+                    }
+                })
+            }
+        })
+    });
 }
 
 

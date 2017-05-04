@@ -183,3 +183,6 @@ body{
     background: #fde910;
     color: red;
 }
+#calendarBig table .selected-day{
+    background: #000;
+}

@@ -86,6 +86,21 @@ body{
 .header input[type="checkbox"]:checked+label{
     background-position:0 -20px
 }
+.content-wrap{
+    padding: 30px 0;
+}
+
+.content-wrap .info{
+    background-color: #f1f2f3;
+    padding: 33px 20px;
+}
+.content-wrap .info h1{
+    margin: 0;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 30px;
+}
+
 
 /*calendar*/
 #calendarBig { /* весь календарь */

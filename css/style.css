@@ -91,6 +91,7 @@ body{
 }
 
 .info{
+    display: none;
     background-color: #f1f2f3;
     padding: 33px 20px;
 }
@@ -183,7 +184,7 @@ body{
     min-width: 25px;
 }
 
-#calendarBig table tbody td[title] { /* выделенные даты */
+#calendarBig table tbody td[title].active-point { /* выделенные даты */
     background: #008ed0;
     color: #fff;
     border-right: 4px solid #fff;
@@ -191,11 +192,15 @@ body{
     padding-right: 1px;
     padding-left: 1px;
 }
-#calendarBig table tbody td[title] a { /* выделенные даты-ссылки */
+#calendarBig table tbody td[title].active-point a { /* выделенные даты-ссылки */
     display: block;
     text-decoration: none;
 }
 
+#calendarBig table tbody td[title].active-point a:hover { /* выделенные даты-ссылки под курсором */
+    background: #fde910;
+    color: red;
+}
 #calendarBig table .selected-day{
     background: #f1f2f3;
 }

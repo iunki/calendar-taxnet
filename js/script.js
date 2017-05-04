@@ -1,8 +1,6 @@
 function calendarBig(year) {
     $('#calendarBig td[title]').removeAttr('title');
 
-    var sotrState = $('#sotr').prop("checked");
-    var byxState = $('#byx').prop("checked");
 
     for (var m = 0; m <= 11; m++) {
         var D = new Date(year, [m], 1),
@@ -61,21 +59,20 @@ function calendarBig(year) {
                 if (
                     parseInt(myD[i].innerHTML) == parseInt(my["end"].split(".")[0]) &&
                     parseInt(myD[i].parentNode.parentNode.parentNode.dataset.m) == (parseInt(my["end"].split(".")[1]) - 1)) {
-                    if (
-                        (my["type"] == 1 && sotrState) ||
-                        (my["type"] == 2 && byxState) ||
-                        (sotrState == false && byxState == false)
-                    ) {
-                        myD[i].title = my["text"];
-                        $(myD[i]).attr("start", my["start"]);
-                        $(myD[i]).attr("end", my["end"]);
-                    }
+
+                    myD[i].title = my["text"];
+                    $(myD[i]).attr("start", my["start"]);
+                    $(myD[i]).addClass("active-point");
+                    $(myD[i]).attr("end", my["end"]);
+                    $(myD[i]).attr("type", my["type"]);
+
                 }
             }
         }
     }
 
     $("#calendarBig td.month-table").on("click", function () {
+        $(".info").show();
 
         $("#calendarBig .month-table.active").removeClass("active");
         $(this).addClass("active");
@@ -157,6 +154,41 @@ function calendarBig(year) {
     });
 }
 
+$("#byx").on("change", function () {
+    if ($(this).prop("checked") && !$("#sotr").prop("checked")) {
+        $("#calendarBig").find("td[type]").each(function () {
+            if (parseInt($(this).attr("type")) != 1) {
+                $(this).removeClass("active-point")
+            } else {
+                $(this).addClass("active-point")
+            }
+        })
+    } else if ($(this).prop("checked") && $("#sotr").prop("checked")) {
+        $("#calendarBig").find("td[title]").addClass("active-point");
+    } else {
+        if (!$("#sotr").prop("checked") && !$(this).prop("checked")) {
+            $("#calendarBig").find("td[title]").addClass("active-point");
+        }
+    }
+});
+
+$("#sotr").on("change", function () {
+    if ($(this).prop("checked") && !$("#byx").prop("checked")) {
+        $("#calendarBig").find("td[type]").each(function () {
+            if (parseInt($(this).attr("type")) != 2) {
+                $(this).removeClass("active-point")
+            } else {
+                $(this).addClass("active-point")
+            }
+        })
+    } else if ($(this).prop("checked") && $("#byx").prop("checked")) {
+        $("#calendarBig").find("td[title]").addClass("active-point");
+    } else {
+        if (!$("#byx").prop("checked") && !$(this).prop("checked")) {
+            $("#calendarBig").find("td[title]").addClass("active-point");
+        }
+    }
+});
 
 yearData = {
     "year2017": {

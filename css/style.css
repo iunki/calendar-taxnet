@@ -107,6 +107,8 @@ body{
     color: #008ed0;
     border-right:  1px solid #dadbdc;
     padding-right: 10px;
+    white-space: nowrap;
+    text-align: right;
 }
 .info .info-table ul{
     margin: 0;
@@ -121,9 +123,8 @@ body{
     width: 100%;
     max-width: 700px;
     margin: 0 auto;
-    /*border-spacing: 0 1.5em;*/
     border-collapse: separate;
-    border-spacing: 3px;
+    border-spacing: 5px;
 }
 #calendarBig td {
     vertical-align: top;
@@ -131,7 +132,8 @@ body{
 #calendarBig .month-table{
     margin-bottom: 20px;
     border: 2px solid transparent;
-    padding: 28px 20px;
+    padding: 20px;
+    cursor: pointer;
 }
 #calendarBig .month-table table{
     border-collapse:separate;
@@ -150,19 +152,7 @@ body{
     padding-bottom: 13px;
     font-size: 18px;
 }
-#calendarBig > thead td:not(:nth-child(2)) { /* предыдущий-следующий года */
-    text-decoration: underline;
-    color: rgb(0, 119, 204);
-    cursor: pointer;
-}
-#calendarBig > thead td:not(:nth-child(2)):hover { /* если наведён курсор на предыдущий-следующий года */
-    color: #ff3200;
-}
-#calendarBig > thead td:nth-child(2) { /* текущий год */
-    font-size: 150%;
-    font-weight: 700;
-    color: rgb(140, 61, 2);
-}
+
 #calendarBig, #calendarBig table {
     font: monospace;
     line-height: 1.2em;
@@ -184,37 +174,29 @@ body{
 #calendarBig table tbody td { /* дни */
     color: #5a5a5a;
     font-size: 12px;
-    padding: 4px 6px 2px 6px;
-    /*border-bottom: 3px solid #fff;*/
+    padding: 4px 4px 2px 4px;
     line-height: 1em;
 }
-#calendarBig .holiday { /* выходные и праздники */
-    /*color: rgb(231, 140, 92);*/
-}
-#calendarBig table tbody td.today { /* сегодня */
-    /*outline: 3px solid red;*/
-}
+
 #calendarBig table tbody td[title] { /* выделенные даты */
     background: #008ed0;
     color: #fff;
-    cursor: help;
-    padding-left: 3px;
-    padding-right: 3px;
-    border-right: 5px solid #fff;
-    border-left: 5px solid #fff;
+    border-right: 4px solid #fff;
+    border-left: 4px solid #fff;
+    padding-right: 1px;
+    padding-left: 1px;
 }
 #calendarBig table tbody td[title] a { /* выделенные даты-ссылки */
     display: block;
     text-decoration: none;
 }
-#calendarBig table tbody td[title] a:hover { /* выделенные даты-ссылки под курсором */
-    background: #fde910;
-    color: red;
-}
+
 #calendarBig table .selected-day{
     background: #f1f2f3;
 }
 #calendarBig table td[title].selected-day{
-    border-right: 5px solid #f1f2f3;
-    border-left: 5px solid #f1f2f3;
+    border-right: 4px solid #f1f2f3;
+    border-left: 4px solid #f1f2f3;
+    padding-right: 1px;
+    padding-left: 1px;
 }

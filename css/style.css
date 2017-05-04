@@ -4,16 +4,14 @@ body{
     color: #5a5a5a;
 }
 
-@media (min-width: 1200px){
-    .container{
-        width: 1170px;
-    }
-}
-.main-container{
-    width: 1200px;
+.container{
+    min-width: 1200px;
     padding: 0 10px;
-    margin-left: auto;
-    margin-right: auto;
+}
+
+.row{
+    margin-right: -10px;
+    margin-left: -10px;
 }
 
 .header{
@@ -21,12 +19,13 @@ body{
     color: #fff;
     padding: 20px 0;
 }
-.header .pl-0{
-    padding-left: 0;
-}
-.header .p-10{
+
+.p-10{
     padding-right: 10px;
     padding-left: 10px;
+}
+.pl-0{
+    padding-left: 0;
 }
 .header h1{
     font-size: 30px;
@@ -36,13 +35,14 @@ body{
 }
 .header .group{
     display: inline-block;
-    margin-right: 30px;
+    margin-right: 40px;
     vertical-align: middle;
     padding-top: 5px;
     padding-bottom: 5px;
 }
 .header .group:first-child{
     padding-left: 9px;
+    margin-right: 32px;
 }
 .header .group:last-child{
     margin-right: 0;
@@ -90,17 +90,31 @@ body{
     padding: 30px 0;
 }
 
-.content-wrap .info{
+.info{
     background-color: #f1f2f3;
     padding: 33px 20px;
 }
-.content-wrap .info h1{
+.info h1{
     margin: 0;
     margin-bottom: 30px;
     text-align: center;
     font-size: 30px;
 }
-
+.info .info-table td{
+    vertical-align: top;
+}
+.info .info-table .info-date{
+    color: #008ed0;
+    border-right:  1px solid #dadbdc;
+    padding-right: 10px;
+}
+.info .info-table ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding-bottom: 30px;
+    padding-left: 20px;
+}
 
 /*calendar*/
 #calendarBig { /* весь календарь */
@@ -165,14 +179,14 @@ body{
     padding: 1px 6px 2px 6px;
 }
 #calendarBig .holiday { /* выходные и праздники */
-    color: rgb(231, 140, 92);
+    /*color: rgb(231, 140, 92);*/
 }
 #calendarBig table tbody td.today { /* сегодня */
-    outline: 3px solid red;
+    /*outline: 3px solid red;*/
 }
 #calendarBig table tbody td[title] { /* выделенные даты */
-    outline: 3px solid green;
-    background: yellow;
+    background: #008ed0;
+    color: #fff;
     cursor: help;
 }
 #calendarBig table tbody td[title] a { /* выделенные даты-ссылки */
@@ -184,5 +198,5 @@ body{
     color: red;
 }
 #calendarBig table .selected-day{
-    background: #000;
+    background: #f1f2f3;
 }

@@ -81,27 +81,44 @@ function calendarBig(year) {
         $(".info h1").text("Отчетность в " + months[parseInt($table.attr("data-m"))]);
         $(".info-table").html(" ");
 
+        var result = [];
+
         for (var i = 0; i < yearData["year" + year]["MonthReportings"].length; i++) {
+
+
             if (parseInt(yearData["year" + year]["MonthReportings"][i]["Month"]) - 1 == parseInt($table.attr("data-m"))) {
                 for (var k = 0; k < yearData["year" + year]["MonthReportings"][i]["Reportings"].length; k++) {
 
                     var obj = yearData["year" + year]["MonthReportings"][i]["Reportings"][k];
-
-                    $(".info-table").append(
-                        '<tr>' +
-                        '<td class="info-date">' + obj.Period + '</td>' +
-                        '<td>' +
-                        '<ul class="info-list">' +
-                        '<li>' + obj.Description + '</li>' +
-                        '</ul>' +
-                        '</td>' +
-                        '</tr>'
-                    )
-
+                    var flag = false;
+                    for (var j = 0; j < result.length; j++) {
+                        if (result[j][0].Period == obj.Period) {
+                            result[j].push(obj);
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (!flag) {
+                        result.push([obj])
+                    }
                 }
             }
-        }
 
+        }
+        for (var i = 0; i < result.length; i++) {
+            var $ul = $('<ul class="info-list"></ul>');
+            var $date = $('<td class="info-date">' + result[i][0].Period + '</td>');
+
+            for (var j = 0; j < result[i].length; j++) {
+                $ul.append("<li>" + result[i][j].Description + "</li>")
+            }
+
+            console.log(result[i]);
+            var $obj = $('<tr></tr>');
+            $obj.append($date);
+            $obj.append($ul);
+            $(".info-table").append($obj)
+        }
     });
 
     $("#calendarBig td[title]").on("click", function () {
@@ -175,8 +192,6 @@ $("#sotr").on("change", function () {
 $("#byx").on("change", function () {
     chengeTypeActivePoint();
 });
-
-
 
 yearData = {
     "year2017": {
@@ -2782,4 +2797,6 @@ calendarBig(new Date().getFullYear());
 function calendarBigChange() {
     calendarBig(document.querySelector('#year').value);
 }
+
+
 

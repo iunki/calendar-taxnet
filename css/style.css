@@ -137,7 +137,7 @@ body{
     border-collapse:separate;
     border-spacing: 0 3px;
 }
-#calendarBig .month-table.active{
+#calendarBig .month-table.active, #calendarBig .month-table.active:hover{
     border: 2px solid #008ed0;
     margin: -2px;
 }

@@ -10,6 +10,55 @@
         b.find(c).equalHeights()
     })
 }(jQuery);
+var editInfoMonth = function ($elem, year) {
+
+    $(".info").show();
+    $("#calendarBig .month-table.active").removeClass("active");
+    $elem.addClass("active");
+
+    var $table = $elem.find("table");
+    $(".info h1").text("Отчетность в " + months[parseInt($table.attr("data-m"))]);
+    $(".info-table").html(" ");
+
+    var result = [];
+
+    for (var i = 0; i < yearData["year" + year]["MonthReportings"].length; i++) {
+
+
+        if (parseInt(yearData["year" + year]["MonthReportings"][i]["Month"]) - 1 == parseInt($table.attr("data-m"))) {
+            for (var k = 0; k < yearData["year" + year]["MonthReportings"][i]["Reportings"].length; k++) {
+
+                var obj = yearData["year" + year]["MonthReportings"][i]["Reportings"][k];
+                var flag = false;
+                for (var j = 0; j < result.length; j++) {
+                    if (result[j][0].Period == obj.Period) {
+                        result[j].push(obj);
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag) {
+                    result.push([obj])
+                }
+            }
+        }
+
+    }
+    for (var i = 0; i < result.length; i++) {
+        var $ul = $('<ul class="info-list"></ul>');
+        var $date = $('<td class="info-date">' + result[i][0].Period + '</td>');
+
+        for (var j = 0; j < result[i].length; j++) {
+            $ul.append("<li>" + result[i][j].Description + "</li>")
+        }
+
+        console.log(result[i]);
+        var $obj = $('<tr></tr>');
+        $obj.append($date);
+        $obj.append($ul);
+        $(".info-table").append($obj)
+    }
+};
 
 function calendarBig(year) {
     $('#calendarBig td[title]').removeAttr('title');
@@ -86,55 +135,6 @@ function calendarBig(year) {
         }
     }
 
-    $("#calendarBig .month-table").on("click", function () {
-        $(".info").show();
-
-        $("#calendarBig .month-table.active").removeClass("active");
-        $(this).addClass("active");
-
-        var $table = $(this).find("table");
-        $(".info h1").text("Отчетность в " + months[parseInt($table.attr("data-m"))]);
-        $(".info-table").html(" ");
-
-        var result = [];
-
-        for (var i = 0; i < yearData["year" + year]["MonthReportings"].length; i++) {
-
-
-            if (parseInt(yearData["year" + year]["MonthReportings"][i]["Month"]) - 1 == parseInt($table.attr("data-m"))) {
-                for (var k = 0; k < yearData["year" + year]["MonthReportings"][i]["Reportings"].length; k++) {
-
-                    var obj = yearData["year" + year]["MonthReportings"][i]["Reportings"][k];
-                    var flag = false;
-                    for (var j = 0; j < result.length; j++) {
-                        if (result[j][0].Period == obj.Period) {
-                            result[j].push(obj);
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (!flag) {
-                        result.push([obj])
-                    }
-                }
-            }
-
-        }
-        for (var i = 0; i < result.length; i++) {
-            var $ul = $('<ul class="info-list"></ul>');
-            var $date = $('<td class="info-date">' + result[i][0].Period + '</td>');
-
-            for (var j = 0; j < result[i].length; j++) {
-                $ul.append("<li>" + result[i][j].Description + "</li>")
-            }
-
-            console.log(result[i]);
-            var $obj = $('<tr></tr>');
-            $obj.append($date);
-            $obj.append($ul);
-            $(".info-table").append($obj)
-        }
-    });
 
     $("#calendarBig td[title]").on("click", function () {
         var $tdRootObj = $(this);
@@ -2819,6 +2819,11 @@ jQuery(document).ready(function () {
         var checkWidth = $(window).width();
         var $demo = $("#calendarBig");
         if (checkWidth > 767) {
+
+            $("#calendarBig .month-table").on("click", function () {
+                editInfoMonth($(this), $("select").val());
+            });
+
             $demo.removeClass("owl-carousel");
             $demo.trigger('destroy.owl.carousel');
         } else if (checkWidth < 768) {
@@ -2826,10 +2831,19 @@ jQuery(document).ready(function () {
             $demo.owlCarousel({
                 items: 1
             });
+            $("#calendarBig .month-table").unbind();
+            // jQuery method on
+            $demo.on('changed.owl.carousel', function (property) {
+                var current = property.item.index;
+                var $mTable = $(property.target).find(".owl-item").eq(current).find(".month-table");
+                editInfoMonth($mTable, $("select").val());
+            });
         }
     }
+
     var init = function () {
         mobile();
+        editInfoMonth($(".month-table").eq(0), $("select").val());
         $(".month-table").equalHeights();
     };
     $(document).ready(init);

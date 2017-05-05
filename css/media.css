@@ -1,0 +1,14 @@
+@media (min-width: 1200px){
+    .container {
+        width: 1200px;
+    }
+    .header .group:first-child {
+        padding-left: 9px;
+    }
+}
+
+@media (min-width: 992px){
+    .header{
+        text-align: center;
+    }
+}

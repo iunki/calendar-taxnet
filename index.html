@@ -6,6 +6,7 @@
     <title>Календарь бухгалтера</title>
     <link rel="stylesheet" type="text/css" href="css/fonts.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/media.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="application/javascript" src="js/jquery-3.1.1.min.js"></script>
 </head>
@@ -13,12 +14,10 @@
 <div class="header">
     <div class="container">
         <div class="row">
-            <!--<div class="col-lg-14 col-xs-24 p-10">-->
-            <div class="col-xs-14 p-10">
+            <div class="col-lg-14 col-xs-24 p-10">
                 <h1>Календарь бухгалтера</h1>
             </div>
-            <!--<div class="col-lg-10 col-xs-24 p-10">-->
-            <div class="col-xs-10 p-10">
+            <div class="col-lg-10 col-xs-24 p-10">
                 <div class="group">
                     <select name="year" id="year" onchange="calendarBigChange()" class="form-control">
                         <option value="2016">2016</option>
@@ -27,11 +26,11 @@
                     </select>
                 </div>
                 <div class="group checkbox-group">
-                    <input type="checkbox" id="byx"> <label for="byx"></label>
+                    <input type="checkbox" id="byx" checked> <label for="byx"></label>
                     <span>бухгалтерская отчетность</span>
                 </div>
                 <div class="group checkbox-group">
-                    <input type="checkbox" id="sotr"> <label for="sotr"></label><span>по сотрудникам</span>
+                    <input type="checkbox" id="sotr" checked> <label for="sotr"></label><span>по сотрудникам</span>
                 </div>
             </div>
         </div>
@@ -39,8 +38,8 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="content-wrap">
-            <div class="col-xs-14 p-10">
+        <div class="content-wrap clearfix">
+            <div class="col-lg-14 p-10">
                 <table id="calendarBig">
                     <thead>
                     <tr>
@@ -153,13 +152,17 @@
                             </table>
                 </table>
             </div>
-            <div class="col-xs-10 p-10 pl-0">
+            <div class="col-lg-10 p-10 pl-0">
                 <div class="info">
                     <h1></h1>
                     <table class="info-table">
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="calendar-footer">
+            <p>Подходит  для небольших ИП и ООО на УСН или ЕНВД без особенностей.
+            </p>
         </div>
     </div>
 </div>

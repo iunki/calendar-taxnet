@@ -41,7 +41,6 @@ var editInfoMonth = function ($elem, year) {
             $ul.append("<li>" + result[i][j].Description + "</li>")
         }
 
-        console.log(result[i]);
         var $obj = $('<tr></tr>');
         $obj.append($date);
         $obj.append($ul);

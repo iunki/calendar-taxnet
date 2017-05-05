@@ -10,9 +10,7 @@
         b.find(c).equalHeights()
     })
 }(jQuery);
-$(function () {
-       $('.month-table').equalHeights();
-});
+
 function calendarBig(year) {
     $('#calendarBig td[title]').removeAttr('title');
     $("#calendarBig .month-table.active").removeClass("active");
@@ -2815,5 +2813,25 @@ function calendarBigChange() {
     calendarBig(document.querySelector('#year').value);
 }
 
+jQuery(document).ready(function () {
 
-
+    function mobile() {
+        var checkWidth = $(window).width();
+        var $demo = $("#calendarBig");
+        if (checkWidth > 767) {
+            $demo.removeClass("owl-carousel");
+            $demo.trigger('destroy.owl.carousel');
+        } else if (checkWidth < 768) {
+            $demo.addClass("owl-carousel");
+            $demo.owlCarousel({
+                items: 1
+            });
+        }
+    }
+    var init = function () {
+        mobile();
+        $(".month-table").equalHeights();
+    };
+    $(document).ready(init);
+    $(window).resize(init);
+});

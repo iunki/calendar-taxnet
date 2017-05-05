@@ -16,7 +16,9 @@ $(function () {
 function calendarBig(year) {
     $('#calendarBig td[title]').removeAttr('title');
     $("#calendarBig .month-table.active").removeClass("active");
+
     $(".info").hide();
+
     for (var m = 0; m <= 11; m++) {
         var D = new Date(year, [m], 1),
             Dlast = new Date(D.getFullYear(), D.getMonth() + 1, 0).getDate(),
@@ -86,7 +88,7 @@ function calendarBig(year) {
         }
     }
 
-    $("#calendarBig td.month-table").on("click", function () {
+    $("#calendarBig .month-table").on("click", function () {
         $(".info").show();
 
         $("#calendarBig .month-table.active").removeClass("active");
@@ -139,7 +141,7 @@ function calendarBig(year) {
     $("#calendarBig td[title]").on("click", function () {
         var $tdRootObj = $(this);
         $(".selected-day").removeClass("selected-day");
-        $("#calendarBig td.month-table").each(function () {
+        $("#calendarBig .month-table").each(function () {
 
             var $table = $(this).find("table");
 

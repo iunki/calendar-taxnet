@@ -151,6 +151,7 @@ body{
 }
 #calendarBig .month-table{
     margin-bottom: 20px;
+    display: table;
     border: 2px solid transparent;
     padding: 20px;
     cursor: pointer;

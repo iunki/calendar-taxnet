@@ -1,6 +1,6 @@
 var editInfoMonth = function ($elem, year) {
 
-    $(".info").show();
+    $(".info").fadeIn(200);
     $("#calendarBig .month-table.active").removeClass("active");
     $elem.addClass("active");
 
@@ -2836,7 +2836,7 @@ jQuery(document).ready(function () {
     $(document).ready(function () {
         init();
         $(".info #info-close").on("click", function () {
-            $(".info").hide();
+            $(".info").fadeOut(200);
         })
     });
     $(window).resize(init);

@@ -16,6 +16,7 @@
     }
 }
 @media (max-width: 767px){
+    #calendarBig .month-table.active:hover,
     #calendarBig .month-table.active{
         border: 2px solid transparent;
     }

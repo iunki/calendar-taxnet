@@ -3917,8 +3917,18 @@ jQuery(document).ready(function () {
 
     var init = function () {
         mobile();
+
+        var highestBox = 0;
+
+        $('.month-table').each(function () {
+            if ($(this).height() > highestBox) {
+                highestBox = $(this).height();
+            }
+        });
+        $(".month-table").height(highestBox);
+
+
         editInfoMonth($(".month-table").eq(0), $("select").val());
-        $('.month-table').equalize('height');
     };
     $(document).ready(function () {
         init();

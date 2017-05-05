@@ -5,6 +5,9 @@
     .header .group:first-child {
         padding-left: 9px;
     }
+    .info-wrap{
+        padding-left: 0 !important;
+    }
 }
 
 @media (min-width: 992px){

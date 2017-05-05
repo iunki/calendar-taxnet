@@ -1,75 +1,83 @@
-body{
+body {
     font-family: 'Circe', serif;
     font-size: 14px;
     color: #5a5a5a;
 }
 
-
-.container{
+.container {
     padding: 0 10px;
 }
 
-.row{
+.row {
     margin-right: -10px;
     margin-left: -10px;
 }
 
-.header{
+.header {
     background-color: #008ed0;
     color: #fff;
     padding: 20px 0;
 }
 
-.p-10{
+.p-10 {
     padding-right: 10px;
     padding-left: 10px;
 }
-.pl-0{
+
+.pl-0 {
     padding-left: 0;
 }
-.header h1{
+
+.header h1 {
     font-size: 30px;
     font-family: Circe, serif;
     font-weight: 300;
     margin: 0;
 }
-.header .group{
+
+.header .group {
     display: inline-block;
     margin-right: 40px;
     vertical-align: middle;
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.header .group:first-child{
+
+.header .group:first-child {
     margin-right: 32px;
 }
-.header .group:last-child{
+
+.header .group:last-child {
     margin-right: 0;
 }
-.header .group.checkbox-group{
+
+.header .group.checkbox-group {
     margin-bottom: -4px;
 }
-.header select{
+
+.header select {
     font-size: 16px;
     -webkit-appearance: none;
     width: 80px;
     height: 26px;
     padding: 3px 20px 3px 15px;
-    box-shadow: none!important;
+    box-shadow: none !important;
     background: #fff url("../images/arrow-down.png") no-repeat 60px 10px;
     display: inline-block;
     border: none;
 }
-.header select:active{
+
+.header select:active {
     outline: none;
     box-shadow: none;
 }
 
-.header input[type="checkbox"]{
+.header input[type="checkbox"] {
     display: none;
     margin: 4px 0 0;
     padding: 0;
 }
+
 .header label {
     display: inline-block;
     height: 20px;
@@ -79,68 +87,79 @@ body{
     margin-bottom: 0;
     margin-right: 5px;
 }
-.header .checkbox-group span{
+
+.header .checkbox-group span {
     vertical-align: top;
 }
-.header input[type="checkbox"]:checked+label{
-    background-position:0 -20px
+
+.header input[type="checkbox"]:checked + label {
+    background-position: 0 -20px
 }
-.content-wrap{
+
+.content-wrap {
     padding-top: 25px;
 
 }
 
-.calendar-footer{
+.calendar-footer {
     padding: 25px 0;
     margin-top: 22px;
     border-top: 2px solid #f1f2f3;
 }
 
-.info{
+.info {
     display: none;
     background-color: #f1f2f3;
     padding: 33px 10px 33px 20px;
     position: relative;
 }
-.info #info-close{
+
+.info #info-close {
     position: absolute;
     right: 15px;
-    top: 15px;  
+    top: 15px;
+    cursor: pointer;
 }
-.info h1{
+
+.info h1 {
     margin: 0;
     margin-bottom: 30px;
     text-align: center;
     font-size: 30px;
 }
-.info .info-table td{
+
+.info .info-table td {
     vertical-align: top;
 }
-.info .info-table .info-date{
+
+.info .info-table .info-date {
     color: #008ed0;
-    border-right:  1px solid #dadbdc;
+    border-right: 1px solid #dadbdc;
     padding-right: 10px;
     white-space: nowrap;
     text-align: right;
 }
-.info .info-table ul{
+
+.info .info-table ul {
     margin: 0;
     padding: 0;
     list-style: none;
     padding-bottom: 15px;
     padding-left: 20px;
 }
-.info .info-table tr:last-child ul{
+
+.info .info-table tr:last-child ul {
     padding-bottom: 0;
 }
-.info ul li{
+
+.info ul li {
     position: relative;
     margin-bottom: 7px;
     line-height: 1.2em;
 }
 
-.info ul li:before{
-    content:"•";
+.info ul li:before {
+    content: "•";
     position: absolute;
     left: -7px;
 }
@@ -153,27 +172,33 @@ body{
     border-collapse: separate;
     border-spacing: 5px;
 }
+
 #calendarBig td {
     vertical-align: top;
 }
-#calendarBig .month-table{
+
+#calendarBig .month-table {
     margin-bottom: 3px;
     border: 2px solid transparent;
     padding: 20px;
     cursor: pointer;
     display: inline-block;
 }
-#calendarBig .month-table table{
-    border-collapse:separate;
+
+#calendarBig .month-table table {
+    border-collapse: separate;
     border-spacing: 0 3px;
 }
-#calendarBig .month-table.active, #calendarBig .month-table.active:hover{
+
+#calendarBig .month-table.active, #calendarBig .month-table.active:hover {
     border: 2px solid #008ed0;
 }
-#calendarBig .month-table:hover{
+
+#calendarBig .month-table:hover {
     border: 2px solid #f1f2f3;
 }
-#calendarBig td.month{
+
+#calendarBig td.month {
     text-transform: uppercase;
     padding-bottom: 13px;
     font-size: 18px;
@@ -185,18 +210,22 @@ body{
     font-size: 15px;
     text-align: center;
 }
+
 #calendarBig table { /* таблицы с месяцами выравнены по верхней границе, горизонтально — по центру */
     display: inline-table;
 }
+
 #calendarBig table thead tr:nth-child(1) { /* названия месяцев */
     font-size: 110%;
     font-weight: 700;
 }
+
 #calendarBig table thead tr:last-child { /* название дней недели */
     font-size: small;
     font-weight: 700;
     color: rgb(103, 103, 103);
 }
+
 #calendarBig table tbody td { /* дни */
     color: #5a5a5a;
     font-size: 12px;
@@ -204,6 +233,7 @@ body{
     line-height: 1em;
     width: 25px !important;
     min-width: 25px;
+    transition: background 0s ease-in;
 }
 
 #calendarBig table tbody td[title].active-point { /* выделенные даты */
@@ -213,16 +243,19 @@ body{
     border-left: 4px solid #fff;
     padding-right: 1px;
     padding-left: 1px;
+    transition: background 0.2s ease-in,color 0.2s ease-in;
 }
+
 #calendarBig table tbody td[title].active-point a { /* выделенные даты-ссылки */
     display: block;
     text-decoration: none;
 }
 
-#calendarBig table .selected-day{
+#calendarBig table .selected-day {
     background: #f1f2f3;
 }
-#calendarBig table td[title].selected-day{
+
+#calendarBig table td[title].selected-day {
     border-right: 4px solid #f1f2f3 !important;
     border-left: 4px solid #f1f2f3 !important;
     padding-right: 1px;

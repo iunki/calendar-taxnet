@@ -10,7 +10,7 @@
     }
 }
 
-@media (min-width: 992px){
+@media (max-width: 1319px){
     .header{
         text-align: center;
     }

@@ -1,4 +1,3 @@
-
 var editInfoMonth = function ($elem, year) {
 
     $(".info").show();
@@ -2834,6 +2833,11 @@ jQuery(document).ready(function () {
         editInfoMonth($(".month-table").eq(0), $("select").val());
         $('.month-table').equalize('height');
     };
-    $(document).ready(init);
+    $(document).ready(function () {
+        init();
+        $(".info #info-close").on("click", function () {
+            $(".info").hide();
+        })
+    });
     $(window).resize(init);
 });
